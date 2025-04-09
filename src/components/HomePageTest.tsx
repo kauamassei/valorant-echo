@@ -1,23 +1,26 @@
-import axios from "axios"
+
+import { useEffect, useState } from "react"
+import api from "../services/api";
 
 const HomePageTest = () => {
+    
+    const [agents, setAgent] = useState<any[]>([]);
 
-    const getDataAgents = async () => {
-        try {
-            const response = await axios.get("https://valorant-api.com/v1/agents");
-             if (response.status == 200) {
-                console.log(response)
-             }
-        } catch {
-            console.error();
-            
-        }
-    }
-
-    getDataAgents()
+    useEffect(() => {
+        api.get("/agents").then((response) => setAgent(response.data.data)).catch((err) => {
+            console.log("Erro na requisição" + err)
+        })
+    }, [])
 
   return (
-    <div>HomePageTest</div>
+    <>
+    <p> Agente:  </p>
+    <ul>
+        {agents.map((agent) => (
+            <li key={agent.uuid}>{agent.displayName}</li>
+        ))}
+    </ul>
+    </>
   )
 }
 
