@@ -17,7 +17,8 @@ const HomePageTest = () => {
     <p> Agente:  </p>
     <ul>
         {agents.map((agent) => (
-            <li key={agent.uuid}>{agent.displayName}</li>
+            <li key={agent.uuid}>{agent.displayName} - {agent.description} </li>
+
         ))}
     </ul>
     </>
