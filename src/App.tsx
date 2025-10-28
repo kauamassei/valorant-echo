@@ -1,12 +1,12 @@
 
-import './App.css'
-import Agents from './components/Agents'
+
+import Navbar from './components/Navbar'
 
 function App() {
 
   return (
     <>
-      <Agents />
+      <Navbar />
     </>
   )
 }

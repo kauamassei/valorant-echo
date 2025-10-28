@@ -15,6 +15,7 @@ const Agents = () => {
       try {
         const response = await api.get("/agents");
         setAgents(response.data.data);
+        console.log("Requisicao foi um sucesso!");
       } catch (error) {
         console.log("Erro na requisicao" + error);
       }
