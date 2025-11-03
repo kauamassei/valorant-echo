@@ -10,76 +10,74 @@ const LoginForm = () => {
   const onSubmit = (data: FormSchema) => {
     console.log(data);
   };
+
   return (
-    <>
-      <div>
-        <div className="bg-[#1c1c1c]">
-          <img
-            src={neonBackground}
-            alt="Sage Background Image"
-            className="w-full h-screen object-cover object-[50%] md:h-auto md:object-contain"
-          />
+    <div className="relative min-h-screen bg-[#1c1c1c] overflow-hidden">
 
-          <div className="absolute inset-0 p-4 flex justify-center items-center">
-            <form
-              className="w-96 bg-white/30 backdrop-invert backdrop-opacity-30 p-4 rounded-md border border-slate-300 flex flex-col gap-4 text-white items-center"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className="flex flex-col gap-2 mb-2 w-full justify-center items-center mt-4">
-                <img
-                  src={valorantTransparent}
-                  alt="Logo Valorant Echo"
-                  width={300}
-                />
-                <div className="flex flex-col gap-2 mb-2 w-full">
-                  <label htmlFor="email">Email: </label>
-                  <input
-                    type="text"
-                    id="email"
-                    placeholder="Digite seu email"
-                    {...register("email")}
-                    className="h-10 pl-2 rounded-md border border-slate-300 bg-white text-gray-600"
-                  />
-                  {errors.email && (
-                    <small className="text-red-500 italic">
-                      {errors.email.message}
-                    </small>
-                  )}
-                  <label htmlFor="password">Senha: </label>
-                  <input
-                    type="text"
-                    id="password"
-                    placeholder="Digite sua senha"
-                    {...register("password")}
-                    className="h-10 pl-2 rounded-md border border-slate-300 bg-white text-gray-600"
-                  />
-                  {errors.password && (
-                    <small className="text-red-500 italic">
-                      {errors.password.message}
-                    </small>
-                  )}
-                </div>
-                <div className="w-full flex flex-col gap-4 items-center">
-                  <button className="bg-[#FF7272] hover:bg-[#ffb5b5] rounded-md pt-3 pb-3 w-full text-white">
-                    Entrar
-                  </button>
-                  <p>Ou:</p>
-                  <button className="bg-white rounded-md pt-3 pb-3 w-full flex justify-center text-black">
-                    Fazer login com Google
-                    <FcGoogle />
-                  </button>
+      {/* Imagem de fundo */}
+      <img
+        src={neonBackground}
+        alt="Background Neon"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      />
 
-                  <p className="mt-4">
-                    Não tem uma conta?{" "}
-                    <button className="text-blue-700">Cadastre-se</button>
-                  </p>
-                </div>
-              </div>
-            </form>
+      {/* Conteúdo central */}
+      <div className="relative z-10 grid place-items-center min-h-screen p-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full max-w-sm bg-white/20 backdrop-blur-lg border border-white/30 p-6 rounded-xl shadow-lg flex flex-col gap-4 text-white"
+        >
+          <div className="flex flex-col items-center gap-3">
+            <img src={valorantTransparent} alt="Logo Valorant Echo" width={220} />
+
+            {/* Campo Email */}
+            <label className="w-full">
+              Email:
+              <input
+                type="text"
+                placeholder="Digite seu email"
+                {...register("email")}
+                className="mt-1 w-full h-10 px-3 rounded-md bg-white text-gray-700 border border-gray-300 focus:outline-none"
+              />
+              {errors.email && (
+                <small className="text-red-400">{errors.email.message}</small>
+              )}
+            </label>
+
+            {/* Campo Senha */}
+            <label className="w-full">
+              Senha:
+              <input
+                type="password"
+                placeholder="Digite sua senha"
+                {...register("password")}
+                className="mt-1 w-full h-10 px-3 rounded-md bg-white text-gray-700 border border-gray-300 focus:outline-none"
+              />
+              {errors.password && (
+                <small className="text-red-400">{errors.password.message}</small>
+              )}
+            </label>
           </div>
-        </div>
+
+          <button className="bg-[#FF7272] hover:bg-[#ffb5b5] rounded-md py-3 w-full transition">
+            Entrar
+          </button>
+
+          <div className="text-center">Ou:</div>
+
+          <button className="bg-white rounded-md py-3 w-full flex justify-center items-center gap-2 text-black hover:bg-gray-200 transition">
+            <FcGoogle /> Fazer login com Google
+          </button>
+
+          <p className="mt-4 text-center text-sm">
+            Não tem uma conta?{" "}
+            <a href="/register" className="text-blue-400 hover:text-blue-600 transition">
+              Cadastre-se
+            </a>
+          </p>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 

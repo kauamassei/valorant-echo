@@ -4,6 +4,7 @@ import WeaponsPage from "./pages/WeaponsPage";
 import Home from "./pages/Home";
 import AgentsPage from "./pages/AgentsPage";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/weapons" element={<WeaponsPage />} />
           <Route path="/agents" element={<AgentsPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </>
     </>

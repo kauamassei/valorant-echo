@@ -28,7 +28,7 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a href="" className="hover:text-[#FF7272]">
+              <a href="/agents" className="hover:text-[#FF7272]">
                 Agentes
               </a>
             </li>
@@ -47,7 +47,7 @@ const Navbar = () => {
             ☰
           </button>
           <button className="hidden md:flex bg-[#FF7272] rounded-sm text-white ml-10 pl-4 pr-4 pt-1 pb-1">
-            Login
+            <a href="/login">Login</a>
           </button>
         </div>
       </nav>
