@@ -1,6 +1,9 @@
+import { useState } from "react";
 import valorantEchoLogo from "../assets/valorantEchoLogo.png";
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="bg-white">
       <nav className="bg-[#14141A]">
@@ -43,12 +46,55 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
-          <button className="text-1xl md:hidden bg-[#FF7272] rounded-md text-white ml-10  pl-2 pr-2 pt-1 pb-1">
-            ☰
-          </button>
           <button className="hidden md:flex bg-[#FF7272] rounded-sm text-white ml-10 pl-4 pr-4 pt-1 pb-1">
             <a href="/login">Login</a>
           </button>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-1xl md:hidden bg-[#FF7272] rounded-md text-white ml-10  pl-2 pr-2 pt-1 pb-1"
+          >
+            {menuOpen ? (
+              <p className="text-sm">X</p>
+            ) : (
+              <p className="text-sm">☰</p>
+            )}
+          </button>
+        </div>
+        <div className="">
+          {menuOpen && (
+            <ul className="flex flex-col md:hidden text-white gap-4 items-center p-4">
+              <li>
+                <a href="/" className="hover:text-[#FF7272] transition-all ">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="" className="hover:text-[#FF7272]">
+                  Tracker
+                </a>
+              </li>
+              <li>
+                <a href="agents" className="hover:text-[#FF7272]">
+                  Agentes
+                </a>
+              </li>
+              <li>
+                <a href="weapons" className="hover:text-[#FF7272]">
+                  Armas
+                </a>
+              </li>
+              <li>
+                <a href="" className="hover:text-[#FF7272]">
+                  Eventos
+                </a>
+              </li>
+              <li>
+                <a href="login" className="hover:text-[#FF7272]">
+                  Login
+                </a>
+              </li>
+            </ul>
+          )}
         </div>
       </nav>
     </header>
