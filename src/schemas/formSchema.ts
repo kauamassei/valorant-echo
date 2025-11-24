@@ -3,7 +3,6 @@ import { z } from "zod";
 export const formSchema = z
   .object({
     name: z.string().min(3, "O número mínimo de caracteres é 3."),
-    lastName: z.string().min(3, "O número mínimo de caracteres é 3."),
     email: z
       .string()
       .min(1, "O campo é obrigatório.")
@@ -15,7 +14,7 @@ export const formSchema = z
   })
   .refine((field) => field.password === field.confirmPassword, {
     message: "As senhas precisam ser iguais",
-    path: ["confirmpassword"],
+    path: ["confirmPassword"],
   });
 
 export type FormSchema = z.infer<typeof formSchema>;

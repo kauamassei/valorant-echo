@@ -3,13 +3,24 @@ import type { FormSchema } from "../schemas/formSchema";
 import valorantTransparent from "../assets/valorantTransparent.png";
 import neonBackground from "../assets/neonBackground.png";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 
 const RegisterForm = () => {
   const { register, handleSubmit, errors } = useForms();
 
   const onSubmit = (data: FormSchema) => {
+    alert("submit funcionando");
     console.log(data);
+    axios
+      .post("http://localhost:3333/cadastro", data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
+
   return (
     <>
       <div className="relative min-h-screen bg-[#1c1c1c] overflow-hidden">
@@ -64,7 +75,7 @@ const RegisterForm = () => {
                 <label htmlFor="password" className="w-full">
                   Senha:
                   <input
-                    type="text"
+                    type="password"
                     id="password"
                     placeholder="Digite sua senha"
                     {...register("password")}
@@ -79,8 +90,8 @@ const RegisterForm = () => {
                 <label htmlFor="password" className="w-full">
                   Confirme sua senha:
                   <input
-                    type="text"
-                    id="password"
+                    type="password"
+                    id="confirmPassword"
                     placeholder="Confirme sua senha"
                     {...register("confirmPassword")}
                     className="mt-1 w-full h-10 px-3 rounded-md bg-white text-gray-700 border border-gray-300 focus:outline-none"
@@ -93,7 +104,10 @@ const RegisterForm = () => {
                 </label>
               </div>
 
-              <button className="bg-[#FF7272] hover:bg-[#ffb5b5] rounded-md py-3 w-full transition">
+              <button
+                type="submit"
+                className="bg-[#FF7272] hover:bg-[#ffb5b5] rounded-md py-3 w-full transition"
+              >
                 Cadastrar
               </button>
               <p className="text-center">Ou:</p>
