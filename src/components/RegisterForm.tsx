@@ -9,10 +9,10 @@ const RegisterForm = () => {
   const { register, handleSubmit, errors } = useForms();
 
   const onSubmit = (data: FormSchema) => {
-    alert("submit funcionando");
+    
     console.log(data);
     axios
-      .post("http://localhost:3333/cadastro", data)
+      .post("http://localhost:3333/auth/cadastro", data)
       .then(function (response) {
         console.log(response);
       })

@@ -3,12 +3,24 @@ import type { FormSchema } from "../schemas/formSchema";
 import valorantTransparent from "../assets/valorantTransparent.png";
 import neonBackground from "../assets/neonBackground.png";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 
 const LoginForm = () => {
   const { register, handleSubmit, errors } = useForms();
 
+
+
   const onSubmit = (data: FormSchema) => {
+    alert("submit funcionando");
     console.log(data);
+    axios
+      .post("http://localhost:3333/auth/login", data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
