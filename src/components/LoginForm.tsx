@@ -1,16 +1,14 @@
-import useForms from "../hooks/useForms";
-import type { FormSchema } from "../schemas/formSchema";
+import useLoginForm from "../hooks/useLoginForm";
 import valorantTransparent from "../assets/valorantTransparent.png";
 import neonBackground from "../assets/neonBackground.png";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import type { LoginSchema } from "../schemas/loginSchema";
 
 const LoginForm = () => {
-  const { register, handleSubmit, errors } = useForms();
+  const { register, handleSubmit, errors } = useLoginForm();
 
-
-
-  const onSubmit = (data: FormSchema) => {
+  const onSubmit = (data: LoginSchema) => {
     alert("submit funcionando");
     console.log(data);
     axios
@@ -20,6 +18,7 @@ const LoginForm = () => {
       })
       .catch(function (error) {
         console.log(error);
+        alert("Email ou senha incorretos");
       });
   };
 
@@ -75,13 +74,19 @@ const LoginForm = () => {
             </label>
           </div>
 
-          <button className="bg-[#FF7272] hover:bg-[#ffb5b5] rounded-md py-3 w-full transition">
+          <button
+            type="submit"
+            className="bg-[#FF7272] hover:bg-[#ffb5b5] rounded-md py-3 w-full transition"
+          >
             Entrar
           </button>
 
           <div className="text-center">Ou:</div>
 
-          <button className="bg-white rounded-md py-3 w-full flex justify-center items-center gap-2 text-black hover:bg-gray-200 transition">
+          <button
+            type="button"
+            className="bg-white rounded-md py-3 w-full flex justify-center items-center gap-2 text-black hover:bg-gray-200 transition"
+          >
             <FcGoogle /> Fazer login com Google
           </button>
 

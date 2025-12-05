@@ -1,4 +1,4 @@
-import useForms from "../hooks/useForms";
+import useForms from "../hooks/useRegisterForm";
 import type { FormSchema } from "../schemas/formSchema";
 import valorantTransparent from "../assets/valorantTransparent.png";
 import neonBackground from "../assets/neonBackground.png";
@@ -9,7 +9,6 @@ const RegisterForm = () => {
   const { register, handleSubmit, errors } = useForms();
 
   const onSubmit = (data: FormSchema) => {
-    
     console.log(data);
     axios
       .post("http://localhost:3333/auth/cadastro", data)
