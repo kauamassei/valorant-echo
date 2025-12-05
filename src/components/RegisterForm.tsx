@@ -3,10 +3,12 @@ import type { FormSchema } from "../schemas/formSchema";
 import valorantTransparent from "../assets/valorantTransparent.png";
 import neonBackground from "../assets/neonBackground.png";
 import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const RegisterForm = () => {
   const { register, handleSubmit, errors } = useForms();
+  const navigate = useNavigate()
 
   const onSubmit = (data: FormSchema) => {
     console.log(data);
@@ -14,6 +16,7 @@ const RegisterForm = () => {
       .post("http://localhost:3333/cadastro", data)
       .then(function (response) {
         console.log(response);
+        navigate('/profile')
       })
       .catch(function (error) {
         console.log(error);
