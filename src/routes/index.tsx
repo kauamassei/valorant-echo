@@ -5,7 +5,7 @@ import Home from "../pages/Home";
 import AgentsPage from "../pages/AgentsPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-import Profile from "../components/Profile";
+import ProfilePage from "../pages/ProfilePage";
 
 
 const AppRoutes = () => {
@@ -20,7 +20,7 @@ const AppRoutes = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<ProfilePage />} />
           
         </Routes>
       </>
