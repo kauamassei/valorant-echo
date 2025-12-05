@@ -4,17 +4,22 @@ import neonBackground from "../assets/neonBackground.png";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import type { LoginSchema } from "../schemas/loginSchema";
+import { useNavigate } from "react-router-dom";
+
 
 const LoginForm = () => {
   const { register, handleSubmit, errors } = useLoginForm();
+  const navigate = useNavigate()
 
   const onSubmit = (data: LoginSchema) => {
-    alert("submit funcionando");
     console.log(data);
     axios
-      .post("http://localhost:3333/auth/login", data)
+      .post("http://localhost:3333/login", data)
       .then(function (response) {
         console.log(response);
+
+        localStorage.setItem("token", response.data); //armazena o token no localstorage
+        navigate('/profile')
       })
       .catch(function (error) {
         console.log(error);

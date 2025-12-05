@@ -11,7 +11,7 @@ const RegisterForm = () => {
   const onSubmit = (data: FormSchema) => {
     console.log(data);
     axios
-      .post("http://localhost:3333/auth/cadastro", data)
+      .post("http://localhost:3333/cadastro", data)
       .then(function (response) {
         console.log(response);
       })
