@@ -25,11 +25,6 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a href="" className="hover:text-[#FF7272]">
-                Tracker
-              </a>
-            </li>
-            <li>
               <a href="/agents" className="hover:text-[#FF7272]">
                 Agentes
               </a>
@@ -81,11 +76,7 @@ const Navbar = () => {
               Home
             </a>
           </li>
-          <li>
-            <a href="" className="hover:text-[#FF7272]">
-              Tracker
-            </a>
-          </li>
+
           <li>
             <a href="agents" className="hover:text-[#FF7272]">
               Agentes

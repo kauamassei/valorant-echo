@@ -27,30 +27,36 @@ const Weapons = () => {
   }, []);
   return (
     <>
-      <div className="mt-6">
-        <h1 className="text-4xl flex justify-center">Arsenal</h1>
-        <ul>
-          {weapons.map((weapon) => (
-            <div className="flex justify-center items-center bg-[#FF7272] pl-4 pr-4 pt-4 pb-12 m-8 border rounded-4xl hover:bg-[#ffc4c9] transform transition hover:-translate-y-1  motion-reduce:hover:transform-none">
-              <li>
-                <div className="bg-white flex justify-center flex-col items-center gap-2 p-4 rounded-4xl">
-                  <h1 className="text-2xl">{weapon.displayName}</h1>
-                  <p className="">Categoria: {weapon.category}</p>
-                  <img
-                    src={weapon.displayIcon}
-                    alt="weapon display"
-                    width={250}
-                    height={250}
-                  />
-                  <div>
-                    <h2>...</h2>
-                  </div>
-                </div>
-              </li>
-            </div>
-          ))}
-        </ul>
-      </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-6 bg-[#070B12]">
+      {weapons.map((weapon) => (
+        <div
+          key={weapon.uuid}
+          className="relative group grid h-128 w-full max-w-104 items-end justify-center overflow-hidden 
+                     text-center rounded-xl shadow-lg bg-gray-900 hover:bg-[#F96666] transition-all duration-300 ease-out  mx-auto"
+        >
+          <div
+            className="absolute inset-0 h-full w-full bg-cover bg-center 
+                       transition-all duration-300 ease-out 
+                       group-hover:scale-110"
+            style={{
+              backgroundImage: `url(${ weapon.displayIcon})`,
+            }}
+          />
+
+         
+          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50" />
+
+          <div className="relative py-10 px-6 md:px-8">
+            <h2 className="mb-4 text-3xl font-medium text-white font-tungsten">
+              {weapon.displayName}
+              <p className="">Categoria: {weapon.category}</p>
+            </h2>
+
+          </div>
+        </div>
+      ))}
+    </div>
     </>
   );
 };
