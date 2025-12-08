@@ -8,7 +8,7 @@ import axios from "axios";
 
 const RegisterForm = () => {
   const { register, handleSubmit, errors } = useForms();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = (data: FormSchema) => {
     console.log(data);
@@ -16,7 +16,7 @@ const RegisterForm = () => {
       .post("http://localhost:3333/cadastro", data)
       .then(function (response) {
         console.log(response);
-        navigate('/profile')
+        navigate("/profile");
       })
       .catch(function (error) {
         console.log(error);
