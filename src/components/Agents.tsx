@@ -7,7 +7,7 @@ interface Agent {
   displayName: string;
   displayIcon: string;
   fullPortrait: string;
-  background: string;
+
 }
 
 const Agents = () => {

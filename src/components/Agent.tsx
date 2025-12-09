@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useParams } from "react-router-dom";
+import Navbar from "./Navbar";
 
 interface AgenteSetup {
   uuid: string;
   displayName: string;
   description: string;
   fullPortrait: string;
-  background: string;
   abilities: [];
 }
 
@@ -33,12 +33,19 @@ const Agent = () => {
 
   return (
     <>
-      <div className="p-4">
-        <img src={agent.fullPortrait} alt="Reyna full body" />
+      <Navbar />
+      <div className="p-6 bg-[#070B12] min-h-screen">
+        <div className="flex">
+          <img
+            src={agent.fullPortrait}
+            alt="Reyna full body"
+            className="w-180 flex items-start"
+          />
 
-        <div className="">
-          {agent.displayName}
-          {agent.description}
+          <div className="text-white items-center justify-center">
+            {agent.displayName}
+            {agent.description}
+          </div>
         </div>
       </div>
     </>
