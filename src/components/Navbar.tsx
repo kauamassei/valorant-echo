@@ -30,7 +30,7 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a href="weapons" className="hover:text-[#FF7272]">
+              <a href="/weapons" className="hover:text-[#FF7272]">
                 Armas
               </a>
             </li>
@@ -78,12 +78,12 @@ const Navbar = () => {
           </li>
 
           <li>
-            <a href="agents" className="hover:text-[#FF7272]">
+            <a href="/agents" className="hover:text-[#FF7272]">
               Agentes
             </a>
           </li>
           <li>
-            <a href="weapons" className="hover:text-[#FF7272]">
+            <a href="/weapons" className="hover:text-[#FF7272]">
               Armas
             </a>
           </li>
@@ -93,7 +93,7 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="login" className="hover:text-[#FF7272]">
+            <a href="/login" className="hover:text-[#FF7272]">
               Login
             </a>
           </li>
