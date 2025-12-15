@@ -13,16 +13,21 @@ const Profile = () => {
   const [avatar, setAvatar] = useState(defaulAvatar);
 
   useEffect(() => {
-    const loadUser = async () => {
-      const token = localStorage.getItem("token");
-      const { data } = await axios.get("http://localhost:3333/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      console.log(data.user);
-      setUser(data.user);
-    };
+    try {
+      const loadUser = async () => {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get("http://localhost:3333/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log(data.user);
+        setUser(data.user);
+      };
 
-    loadUser();
+      loadUser();
+    } catch (error) {
+      console.log(error);
+      
+    }
   }, []);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,7 +50,6 @@ const Profile = () => {
         {user ? (
           <div>
             <div className="mx-auto max-w-2xl rounded-2xl bg-[#0B101A] shadow-[0_0_30px_rgba(0,0,0,0.4)]">
-
               <div>
                 <div className="relative h-48">
                   <img
@@ -121,7 +125,8 @@ const Profile = () => {
                   </div>
 
                   <p className="mt-6 text-gray-600 dark:text-gray-300">
-                    Finge que tem algo super importante escrito aqui só pra preencher espaco
+                    Finge que tem algo super importante escrito aqui só pra
+                    preencher espaco
                   </p>
 
                   <div className="mt-6">
@@ -135,7 +140,7 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className="mt-6">
+                  <div className="mt-8 flex flex-col gap-2">
                     <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                       Minha Conta
                     </h2>
@@ -155,6 +160,8 @@ const Profile = () => {
                       </svg>
                       {user.email}
                     </a>
+                    <p className="text-white text-semibold">Gerenciar</p>
+                    <p className="text-red-300">Sair</p>
                   </div>
                 </div>
               </div>

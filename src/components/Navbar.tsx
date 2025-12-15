@@ -1,8 +1,10 @@
 import { useState } from "react";
 import valorantEchoLogo from "../assets/valorantEchoLogo.png";
 
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
 
   return (
     <header className="bg-white">
