@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import defaulAvatar from "../assets/defaultAvatar.jpg";
@@ -6,11 +7,13 @@ import headerBackground from "../assets/ValorantChinaBeta.jpg";
 interface UserData {
   email: string;
   name: string;
+  avatar: string;
 }
 
 const Profile = () => {
   const [user, setUser] = useState<UserData | null>(null);
-  const [avatar, setAvatar] = useState(defaulAvatar);
+  const [avatarPreview, setAvatarPreview] = useState<string>(defaulAvatar);
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   useEffect(() => {
     try {
@@ -26,27 +29,44 @@ const Profile = () => {
       loadUser();
     } catch (error) {
       console.log(error);
-      
     }
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
 
-    if (!file) return;
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || !e.target.files[0]) return;
 
-    const reader = new FileReader();
+    const file = e.target.files[0];
 
-    reader.onloadend = () => {
-      setAvatar(reader.result as string);
-    };
-    reader.readAsDataURL(file);
+    setAvatarFile(file);
+    setAvatarPreview(URL.createObjectURL(file));
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const token = localStorage.getItem("token");
+
+      const res = await axios.post("http://localhost:3333/profile", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setUser(prev =>
+        prev ? { ...prev, avatar: res.data.avatar } : prev
+      );
+      
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
-      <div className="min-h-screen bg-[#070B12] shadow-lg overflow-hidden transition-colors duration-200">
+      <div className="min-h-screen bg-[#070B12] shadow-lg overflow-visible transition-colors duration-200">
+
         {user ? (
           <div>
             <div className="mx-auto max-w-2xl rounded-2xl bg-[#0B101A] shadow-[0_0_30px_rgba(0,0,0,0.4)]">
@@ -61,7 +81,7 @@ const Profile = () => {
                   <div className="absolute -bottom-12 left-6">
                     <div className="relative">
                       <img
-                        src={avatar}
+                        src={user.avatar ?? defaulAvatar}
                         alt="Profile"
                         className="w-24 h-24 rounded-xl object-cover border-4 border-white dark:border-gray-800 shadow-lg"
                       />
@@ -92,7 +112,8 @@ const Profile = () => {
                   <input
                     id="avatar"
                     type="file"
-                    onChange={handleAvatarChange}
+                    accept="image/*"
+                    onChange={handleUpload}
                     className="hidden"
                   />
                 </div>
