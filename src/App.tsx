@@ -1,13 +1,11 @@
-
+import { UserProvider } from "./contexts/useAuth";
 import AppRoutes from "./routes";
 
 function App() {
   return (
-    <>
-      <>
-       <AppRoutes />
-      </>
-    </>
+    <UserProvider>
+      <AppRoutes />
+    </UserProvider>
   );
 }
 

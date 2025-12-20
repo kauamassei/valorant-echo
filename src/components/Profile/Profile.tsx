@@ -5,6 +5,7 @@ import defaulAvatar from "../../assets/defaultAvatar.jpg";
 import ProfileHeader from "./ProfileHeader";
 import ProfileInfo from "./ProfileInfo";
 import AccountSection from "./AccountSection";
+import Navbar from "../Navbar";
 
 export interface UserData {
   email: string;
@@ -37,19 +38,13 @@ const Profile = () => {
 
     const token = localStorage.getItem("token");
 
-    const res = await axios.post(
-      "http://localhost:3333/profile",
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const res = await axios.post("http://localhost:3333/profile", formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    setUser((prev) =>
-      prev ? { ...prev, avatar: res.data.avatar } : prev
-    );
+    setUser((prev) => (prev ? { ...prev, avatar: res.data.avatar } : prev));
 
     setAvatarPreview(res.data.avatar);
   };
@@ -59,19 +54,20 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#070B12]">
-      <div className="mx-auto max-w-2xl rounded-2xl bg-[#0B101A] shadow-lg">
-        <ProfileHeader
-          avatar={avatarPreview}
-          onUpload={handleUpload}
-        />
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-[#070B12]">
+        <div className="mx-auto max-w-2xl rounded-2xl bg-[#0B101A] shadow-lg">
+          <ProfileHeader avatar={avatarPreview} onUpload={handleUpload} />
 
-        <div className="pt-16 px-6 pb-6">
-          <ProfileInfo name={user.name} />
-          <AccountSection email={user.email} />
+          <div className="pt-16 px-6 pb-6">
+            <ProfileInfo name={user.name} />
+
+            <AccountSection email={user.email} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

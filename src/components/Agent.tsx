@@ -44,10 +44,7 @@ const Agent = () => {
       <div className="p-6 bg-[#070B12] min-h-screen">
         <div className="flex flex-col">
           <div className="w-180 flex items-start">
-          <img
-            src={agent.fullPortrait}
-            alt={agent.displayName}
-          />
+            <img src={agent.fullPortrait} alt={agent.displayName} />
           </div>
 
           <div className="text-white flex justify-end w-full">

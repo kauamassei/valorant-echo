@@ -22,7 +22,6 @@ const ProfileHeader = ({ avatar, onUpload }: Props) => {
             className="w-24 h-24 rounded-xl object-cover border-4 border-white dark:border-gray-800 shadow-lg"
           />
 
-          {/* BOTÃO IGUAL AO ORIGINAL */}
           <label
             htmlFor="avatar"
             className="absolute bottom-1 right-1 cursor-pointer bg-[#F96666] hover:bg-[#f17c7c] text-white p-2 rounded-full shadow-lg transition"
