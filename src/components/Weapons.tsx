@@ -28,7 +28,7 @@ const Weapons = () => {
   return (
     <>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-6 bg-[#070B12]">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-6 bg-[#070B12] pt-24">
       {weapons.map((weapon) => (
         <div
           key={weapon.uuid}
