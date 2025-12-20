@@ -56,7 +56,7 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[#070B12]">
+      <div className="min-h-screen bg-[#070B12] pt-24">
         <div className="mx-auto max-w-2xl rounded-2xl bg-[#0B101A] shadow-lg">
           <ProfileHeader avatar={avatarPreview} onUpload={handleUpload} />
 

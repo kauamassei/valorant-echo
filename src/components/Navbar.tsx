@@ -8,7 +8,7 @@ const Navbar = () => {
   const logged = isLoggedIn();
 
   return (
-    <header className="bg-white">
+    <header className="bg-white fixed top-0 left-0 w-full z-50">
       <nav className="bg-[#14141A]">
         <div className="flex justify-between items-center h-16 p-10">
           <div>
