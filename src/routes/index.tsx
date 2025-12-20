@@ -5,8 +5,8 @@ import Home from "../pages/Home";
 import AgentsPage from "../pages/AgentsPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-import ProfilePage from "../pages/ProfilePage";
 import Agent from "../components/Agent";
+import Profile from "../components/Profile/Profile";
 
 
 const AppRoutes = () => {
@@ -22,12 +22,14 @@ const AppRoutes = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          <Route path="/profile" element={<ProfilePage />} />
-          
+
+          <Route path="/profile" element={<Profile />} />
         </Routes>
+
+
       </>
     </>
-  )
-}
+  );
+};
 
-export default AppRoutes
+export default AppRoutes;

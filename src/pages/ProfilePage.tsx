@@ -1,15 +1,13 @@
-
-
-import Navbar from '../components/Navbar'
-import Profile from '../components/Profile/Profile'
+import Navbar from "../components/Navbar";
+import Profile from "../components/Profile/Profile";
 
 const ProfilePage = () => {
   return (
     <>
-    <Navbar />
-    <Profile />
+      <Navbar />
+      <Profile />
     </>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

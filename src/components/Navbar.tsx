@@ -1,10 +1,11 @@
 import { useState } from "react";
 import valorantEchoLogo from "../assets/valorantEchoLogo.png";
-
+import { useAuth } from "../contexts/useAuth";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const { isLoggedIn } = useAuth();
+  const logged = isLoggedIn();
 
   return (
     <header className="bg-white">
@@ -43,9 +44,20 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <button className="hidden md:flex bg-[#FF7272] rounded-sm text-white ml-10 pl-4 pr-4 pt-1 pb-1">
-            <a href="/login">Login</a>
-          </button>
+          {/* DESKTOP: Login ou Perfil */}
+          {!logged ? (
+            <button className="hidden md:flex bg-[#FF7272] rounded-sm text-white ml-10 pl-4 pr-4 pt-1 pb-1">
+              <a href="/login">Login</a>
+            </button>
+          ) : (
+            <a
+              href="/profile"
+              className="hidden md:flex ml-10 text-white hover:text-[#FF7272] transition-all"
+              title="Meu Perfil"
+            >
+              👤
+            </a>
+          )}
 
           <button
             aria-expanded={menuOpen}
@@ -61,6 +73,7 @@ const Navbar = () => {
           </button>
         </div>
 
+        {/* MOBILE MENU */}
         <ul
           id="mobile-menu"
           className={`
@@ -84,21 +97,33 @@ const Navbar = () => {
               Agentes
             </a>
           </li>
+
           <li>
             <a href="/weapons" className="hover:text-[#FF7272]">
               Armas
             </a>
           </li>
+
           <li>
             <a href="" className="hover:text-[#FF7272]">
               Eventos
             </a>
           </li>
-          <li>
-            <a href="/login" className="hover:text-[#FF7272]">
-              Login
-            </a>
-          </li>
+
+          {/* MOBILE: Login ou Meu Perfil */}
+          {!logged ? (
+            <li>
+              <a href="/login" className="hover:text-[#FF7272]">
+                Login
+              </a>
+            </li>
+          ) : (
+            <li>
+              <a href="/profile" className="hover:text-[#FF7272]">
+                Meu Perfil
+              </a>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
