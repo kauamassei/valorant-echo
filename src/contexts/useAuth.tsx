@@ -16,6 +16,7 @@ const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export const UserProvider = ({ children }: Props) => {
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserData | null>(null);
   const [isReady, setIsReady] = useState(false);
@@ -24,12 +25,26 @@ export const UserProvider = ({ children }: Props) => {
     const loadUser = async () => {
       const token = localStorage.getItem("token");
 
-      const { data } = await axios.get("http://localhost:3333/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      if (!token) {
+        setUser(null);
+        setIsReady(true);
+        return;
+      }
 
-      setUser(data.user);
-      setIsReady(true);
+      try {
+        const { data } = await axios.get("http://localhost:3333/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setUser(data.user);
+        setIsReady(true);
+      } catch (error) {
+        console.log(error);
+        localStorage.removeItem("token");
+        setUser(null);
+      } finally {
+        setIsReady(true);
+      }
     };
 
     loadUser();
@@ -43,11 +58,16 @@ export const UserProvider = ({ children }: Props) => {
     localStorage.removeItem("token");
     setToken(null);
     setUser(null);
-    navigate('/')
+    navigate("/");
   };
 
-  return (<UserContext.Provider value={{isLoggedIn, logout, user}}> {isReady ? children :  null}</UserContext.Provider>)
+  return (
+    <UserContext.Provider value={{ isLoggedIn, logout, user }}>
+      {" "}
+      {isReady ? children : null}
+    </UserContext.Provider>
+  );
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useAuth = () => React.useContext(UserContext)
+export const useAuth = () => React.useContext(UserContext);
