@@ -1,63 +1,86 @@
 import { useState, useEffect } from "react";
 import api from "../services/api";
-interface Weapons {
-  uuid: number;
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+interface Weapon {
+  uuid: string;
   displayName: string;
   category: string;
-  defaultSkinUuid: string;
   displayIcon: string;
 }
 
 const Weapons = () => {
-  const [weapons, setWeapons] = useState<Weapons[]>([]);
+  const [weapons, setWeapons] = useState<Weapon[]>([]);
 
   useEffect(() => {
     const fetchWeapons = async () => {
-      const response = await api.get("/weapons");
-      if (response.status === 200)
-        try {
-          setWeapons(response.data.data);
-          console.log("Sucesso na requisicao");
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (error) {
-          console.log("Erro na requisicao");
-        }
+      try {
+        const response = await api.get("/weapons");
+        setWeapons(response.data.data);
+      } catch (error) {
+        console.log("Erro na requisição de armas:", error);
+      }
     };
+
     fetchWeapons();
   }, []);
+
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.4 }}
+      className="min-h-screen"
+    >
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-6 pt-24 bg-[#070B12]">
+        {weapons.map((weapon) => (
+          <Link
+            key={weapon.uuid}
+            to={`/weapons/${weapon.uuid}`}
+            className="block mx-auto w-full max-w-104"
+          >
+            <div
+              className="
+              relative group grid h-128 w-full
+              items-end justify-center overflow-hidden
+              text-center rounded-xl shadow-lg
+              bg-gray-900
+              transition-all duration-300 ease-out
+            "
+            >
+              {/* Background */}
+              <div
+                className="
+                absolute inset-0 h-full w-full
+                bg-contain bg-center bg-no-repeat
+                transition-all duration-300 ease-out
+                group-hover:scale-110
+              "
+                style={{
+                  backgroundImage: `url(${weapon.displayIcon})`,
+                }}
+              />
 
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-6 bg-[#070B12] pt-24">
-      {weapons.map((weapon) => (
-        <div
-          key={weapon.uuid}
-          className="relative group grid h-128 w-full max-w-104 items-end justify-center overflow-hidden 
-                     text-center rounded-xl shadow-lg bg-gray-900 hover:bg-[#F96666] transition-all duration-300 ease-out  mx-auto"
-        >
-          <div
-            className="absolute inset-0 h-full w-full bg-cover bg-center 
-                       transition-all duration-300 ease-out 
-                       group-hover:scale-110"
-            style={{
-              backgroundImage: `url(${ weapon.displayIcon})`,
-            }}
-          />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50" />
 
-         
-          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50" />
+              {/* Conteúdo */}
+              <div className="relative py-10 px-6 md:px-8">
+                <h2 className="mb-2 text-3xl font-medium text-white font-tungsten">
+                  {weapon.displayName}
+                </h2>
 
-          <div className="relative py-10 px-6 md:px-8">
-            <h2 className="mb-4 text-3xl font-medium text-white font-tungsten">
-              {weapon.displayName}
-              <p className="">Categoria: {weapon.category}</p>
-            </h2>
-
-          </div>
-        </div>
-      ))}
-    </div>
-    </>
+                <p className="text-sm text-gray-300 uppercase tracking-wide">
+                  {weapon.category.replace("EEquippableCategory::", "")}
+                </p>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </motion.div>
   );
 };
 
