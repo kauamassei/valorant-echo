@@ -1,4 +1,4 @@
-import headerBackground from "../../assets/ValorantChinaBeta.jpg";
+import headerBackground from "../../assets/Valorant_CloseBeta_Final_design.jpg";
 
 interface Props {
   avatar: string;

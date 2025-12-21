@@ -30,12 +30,28 @@ const Home = () => {
 
             {/* Content */}
             <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white fade-up">
-              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-                Prepare-se para{" "}
-                <span className="bg-linear-to-r from-[#FF7272] to-red-500 bg-clip-text text-transparent">
-                  escolher seu lado
-                </span>
-              </h1>
+            <h1
+  className="
+    text-4xl md:text-6xl
+    font-semibold
+    tracking-wide
+    uppercase
+    mb-6
+  "
+>
+  Prepare-se para{" "}
+  <span
+    className="
+      bg-linear-to-r from-[#FF7272] to-red-500
+      bg-clip-text text-transparent
+      font-bold
+      tracking-wider
+    "
+  >
+    escolher seu lado
+  </span>
+</h1>
+
 
               <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10">
                 Personalize sua experiência e acompanhe sua evolução. Explore

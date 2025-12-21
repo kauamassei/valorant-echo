@@ -39,7 +39,7 @@ const Agent = () => {
 
   if (!agent) return <p className="text-white p-6">Carregando...</p>;
 
-  // ===== Tema do agente =====
+
   const theme = agentTheme[agent.displayName] || {
     primary: "#FF4655",
     glow: "rgba(255,70,85,0.25)",
@@ -60,20 +60,20 @@ const Agent = () => {
             "--agent-glow": theme.glow,
           } as React.CSSProperties
         }
-        className="min-h-screen bg-gradient-to-b from-[#070B12] to-[#0c1220] text-white overflow-hidden"
+        className="min-h-screen bg-linear-to-b from-[#070B12] to-[#0c1220] text-white overflow-hidden"
       >
-        {/* NAVBAR HERDA O TEMA */}
+
         <Navbar />
 
         <div className="px-8 py-12">
-          {/* ===== TOPO: IMAGEM + TEXTO ===== */}
+
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-            {/* IMAGEM */}
+ 
             <motion.div
               initial={{ opacity: 0, x: -80 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex-shrink-0 relative"
+              className="shrink-0 relative"
             >
               <img
                 src={agent.fullPortrait}
@@ -81,14 +81,12 @@ const Agent = () => {
                 className="w-[380px] lg:w-[520px] drop-shadow-[0_0_60px_var(--agent-glow)]"
               />
 
-              {/* Glow */}
               <div
                 className="absolute inset-0 -z-10 blur-3xl rounded-full"
                 style={{ backgroundColor: "var(--agent-glow)" }}
               />
             </motion.div>
 
-            {/* TEXTO */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -103,7 +101,7 @@ const Agent = () => {
               </h1>
 
               <div
-                className="h-1 w-24 mt-4 mb-6"
+                className="h-1 w-60 mt-4 mb-6"
                 style={{ backgroundColor: "var(--agent-color)" }}
               />
 
@@ -113,7 +111,7 @@ const Agent = () => {
             </motion.div>
           </div>
 
-          {/* ===== HABILIDADES ===== */}
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -131,7 +129,7 @@ const Agent = () => {
                 bg-[#1e2125]/80 backdrop-blur rounded-xl p-6
                 flex flex-col items-center text-center gap-4
                 border border-white/5
-                hover:border-[var(--agent-color)]
+                hover:border-(--agent-color)
                 hover:shadow-[0_0_20px_var(--agent-glow)]
                 transition
               "
