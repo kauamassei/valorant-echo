@@ -61,7 +61,7 @@ const Weapon = () => {
             "--weapon-glow": theme.glow,
           } as React.CSSProperties
         }
-        className="min-h-screen mt-20 bg-linear-to-b from-[#070B12] to-[#0c1220] text-white overflow-hidden"
+        className="min-h-screen mt-14 bg-linear-to-b from-[#070B12] to-[#0c1220] text-white overflow-hidden"
       >
         {/* NAVBAR */}
         <Navbar />
