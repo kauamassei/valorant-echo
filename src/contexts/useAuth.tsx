@@ -16,8 +16,7 @@ const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export const UserProvider = ({ children }: Props) => {
   const navigate = useNavigate();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [token, setToken] = useState<string | null>(null);
+
   const [user, setUser] = useState<UserData | null>(null);
   const [isReady, setIsReady] = useState(false);
 
@@ -37,7 +36,6 @@ export const UserProvider = ({ children }: Props) => {
         });
 
         setUser(data.user);
-        setIsReady(true);
       } catch (error) {
         console.log(error);
         localStorage.removeItem("token");
@@ -56,14 +54,12 @@ export const UserProvider = ({ children }: Props) => {
 
   const logout = () => {
     localStorage.removeItem("token");
-    setToken(null);
     setUser(null);
     navigate("/");
   };
 
   return (
     <UserContext.Provider value={{ isLoggedIn, logout, user }}>
-      {" "}
       {isReady ? children : null}
     </UserContext.Provider>
   );
