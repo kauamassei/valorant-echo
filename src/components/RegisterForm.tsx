@@ -4,7 +4,7 @@ import valorantTransparent from "../assets/valorantTransparent.png";
 import neonBackground from "../assets/neonBackground.png";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../services/api";
 
 const RegisterForm = () => {
   const { register, handleSubmit, errors } = useForms();
@@ -12,11 +12,11 @@ const RegisterForm = () => {
 
   const onSubmit = (data: FormSchema) => {
     console.log(data);
-    axios
-      .post("http://localhost:3333/cadastro", data)
+    api
+      .post("/cadastro", data)
       .then(function (response) {
         console.log(response);
-        navigate("/profile");
+        navigate("/login");
       })
       .catch(function (error) {
         console.log(error);

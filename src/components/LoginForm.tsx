@@ -2,9 +2,9 @@ import useLoginForm from "../hooks/useLoginForm";
 import valorantTransparent from "../assets/valorantTransparent.png";
 import neonBackground from "../assets/neonBackground.png";
 import { FcGoogle } from "react-icons/fc";
-import axios from "axios";
 import type { LoginSchema } from "../schemas/loginSchema";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 
 const LoginForm = () => {
@@ -13,12 +13,12 @@ const LoginForm = () => {
 
   const onSubmit = (data: LoginSchema) => {
     console.log(data);
-    axios
-      .post("http://localhost:3333/login", data)
+    api
+      .post("/login", data)
       .then(function (response) {
         console.log(response);
 
-        localStorage.setItem("token", response.data); //armazena o token no localstorage
+        localStorage.setItem("token", response.data);//armazena o token no localstorage
         navigate('/profile')
       })
       .catch(function (error) {

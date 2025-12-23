@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import api from "../services/api";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import apiGame from "../services/apiGame";
 
 interface Weapon {
   uuid: string;
@@ -16,7 +16,7 @@ const Weapons = () => {
   useEffect(() => {
     const fetchWeapons = async () => {
       try {
-        const response = await api.get("/weapons");
+        const response = await apiGame.get("/weapons");
         setWeapons(response.data.data);
       } catch (error) {
         console.log("Erro na requisição de armas:", error);

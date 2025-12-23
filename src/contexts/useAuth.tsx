@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
 import type { UserData } from "../components/Profile/Profile";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import React from "react";
+import api from "../services/api";
 
 type UserContextType = {
   user: UserData | null;
@@ -32,7 +32,7 @@ export const UserProvider = ({ children }: Props) => {
       }
 
       try {
-        const { data } = await axios.get("http://localhost:3333/me", {
+        const { data } = await api.get("/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

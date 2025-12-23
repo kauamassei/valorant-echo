@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import api from "../services/api";
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 import { agentTheme } from "../themes/agentTheme";
+import apiGame from "../services/apiGame";
 
 interface Ability {
   slot: string;
@@ -27,7 +27,7 @@ const Agent = () => {
   useEffect(() => {
     const fetchAgent = async () => {
       try {
-        const response = await api.get(`/agents/${uuid}`);
+        const response = await apiGame.get(`/agents/${uuid}`);
         setAgent(response.data.data);
       } catch (error) {
         console.log("Erro na requisição: " + error);
@@ -38,7 +38,6 @@ const Agent = () => {
   }, [uuid]);
 
   if (!agent) return <p className="text-white p-6">Carregando...</p>;
-
 
   const theme = agentTheme[agent.displayName] || {
     primary: "#FF4655",
@@ -62,13 +61,10 @@ const Agent = () => {
         }
         className="min-h-screen bg-linear-to-b from-[#070B12] to-[#0c1220] text-white overflow-hidden"
       >
-
         <Navbar />
 
         <div className="px-8 py-12">
-
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
- 
             <motion.div
               initial={{ opacity: 0, x: -80 }}
               animate={{ opacity: 1, x: 0 }}
@@ -110,7 +106,6 @@ const Agent = () => {
               </p>
             </motion.div>
           </div>
-
 
           <motion.div
             initial={{ opacity: 0 }}

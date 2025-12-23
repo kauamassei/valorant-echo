@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import api from "../services/api";
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 import { weaponTheme } from "../themes/weaponTheme";
+import apiGame from "../services/apiGame";
 
 interface WeaponStats {
   fireRate: number;
@@ -27,7 +27,7 @@ const Weapon = () => {
   useEffect(() => {
     const fetchWeapon = async () => {
       try {
-        const response = await api.get(`/weapons/${uuid}`);
+        const response = await apiGame.get(`/weapons/${uuid}`);
         setWeapon(response.data.data);
       } catch (error) {
         console.log("Erro na requisição da arma:", error);
@@ -67,14 +67,13 @@ const Weapon = () => {
         <Navbar />
 
         <div className="px-8 py-12">
-          {/* ===== TOPO ===== */}
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
             {/* IMAGEM */}
             <motion.div
               initial={{ opacity: 0, x: -80 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="flex-shrink-0 relative"
+              className="shrink-0 relative"
             >
               <img
                 src={weapon.displayIcon}
@@ -152,7 +151,7 @@ const Weapon = () => {
                   bg-[#1e2125]/80 backdrop-blur rounded-xl p-6
                   flex flex-col items-center text-center gap-3
                   border border-white/5
-                  hover:border-[var(--weapon-color)]
+                  hover:border-(--weapon-color)
                   hover:shadow-[0_0_20px_var(--weapon-glow)]
                   transition
                 "

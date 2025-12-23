@@ -1,11 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import defaulAvatar from "../../assets/defaultAvatar.jpg";
-
 import ProfileHeader from "./ProfileHeader";
 import ProfileInfo from "./ProfileInfo";
 import AccountSection from "./AccountSection";
 import Navbar from "../Navbar";
+import api from "../../services/api";
 
 export interface UserData {
   email: string;
@@ -19,26 +18,26 @@ const Profile = () => {
 
   useEffect(() => {
     const loadUser = async () => {
-      const token = localStorage.getItem("token");
-
-      const { data } = await axios.get("http://localhost:3333/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setUser(data.user);
-      setAvatarPreview(data.user.avatar || defaulAvatar);
+      try {
+        const { data } = await api.get("/me");
+  
+        setUser(data.user);
+        setAvatarPreview(data.user.avatar || defaulAvatar);
+      } catch (err) {
+        console.error("Erro ao carregar perfil", err);
+      }
     };
-
+  
     loadUser();
   }, []);
-
+  
   const handleUpload = async (file: File) => {
     const formData = new FormData();
     formData.append("image", file);
 
     const token = localStorage.getItem("token");
 
-    const res = await axios.post("http://localhost:3333/profile", formData, {
+    const res = await api.post("/profile", formData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

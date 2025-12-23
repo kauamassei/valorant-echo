@@ -1,4 +1,4 @@
-import api from "../services/api";
+import apiGame from "../services/apiGame";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,6 @@ interface Agent {
   displayName: string;
   displayIcon: string;
   fullPortrait: string;
-
 }
 
 const Agents = () => {
@@ -16,7 +15,7 @@ const Agents = () => {
   useEffect(() => {
     const fetchAgents = async () => {
       try {
-        const response = await api.get("/agents");
+        const response = await apiGame.get("/agents");
         setAgents(response.data.data);
         console.log("Requisição foi um sucesso!");
       } catch (error) {
@@ -36,7 +35,6 @@ const Agents = () => {
         >
           {" "}
           <Link to={agent.uuid}>
-            {/* Background com hover (scale) */}
             <div
               className="absolute inset-0 h-full w-full bg-cover bg-center 
                        transition-all duration-300 ease-out 
