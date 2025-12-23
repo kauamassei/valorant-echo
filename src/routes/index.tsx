@@ -10,28 +10,44 @@ import Agent from "../components/Agent";
 import Profile from "../components/Profile/Profile";
 import Weapon from "../components/Weapon";
 import Nothing from "../components/Nothing";
+import { ToastContainer } from "react-toastify";
 
 const AppRoutes = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/nada" element={<Nothing />} />
+    <>
+      <ToastContainer
+  position="bottom-center"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  toastClassName="bg-[#0B0F1A] border-l-4 border-[#FF4F4F] text-white font-bold rounded-lg text-center shadow-lg p-4"
+/>
 
-        <Route path="/weapons" element={<WeaponsPage />} />
-        <Route path="/weapons/:uuid" element={<Weapon />} />
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/nada" element={<Nothing />} />
 
-        <Route path="/agents" element={<AgentsPage />} />
-        <Route path="/agents/:uuid" element={<Agent />} />
+          <Route path="/weapons" element={<WeaponsPage />} />
+          <Route path="/weapons/:uuid" element={<Weapon />} />
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+          <Route path="/agents" element={<AgentsPage />} />
+          <Route path="/agents/:uuid" element={<Agent />} />
 
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-    </AnimatePresence>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 };
 

@@ -5,25 +5,23 @@ import { FcGoogle } from "react-icons/fc";
 import type { LoginSchema } from "../schemas/loginSchema";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'; // obrigatória
 
 const LoginForm = () => {
   const { register, handleSubmit, errors } = useLoginForm();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = (data: LoginSchema) => {
-    console.log(data);
     api
       .post("/login", data)
       .then(function (response) {
-        console.log(response);
-
-        localStorage.setItem("token", response.data);//armazena o token no localstorage
-        navigate('/profile')
+        localStorage.setItem("token", response.data); 
+        navigate("/profile");
+        toast.success("Login efetuado com sucesso!"); // chama toast
       })
-      .catch(function (error) {
-        console.log(error);
-        alert("Email ou senha incorretos");
+      .catch(function () {
+        toast.error("Email ou senha incorretos"); // toast de erro
       });
   };
 
@@ -42,13 +40,8 @@ const LoginForm = () => {
           className="w-full max-w-sm bg-white/20 backdrop-blur-lg border border-white/30 p-6 rounded-xl shadow-lg flex flex-col gap-4 text-white"
         >
           <div className="flex flex-col items-center gap-3">
-            <img
-              src={valorantTransparent}
-              alt="Logo Valorant Echo"
-              width={220}
-            />
+            <img src={valorantTransparent} alt="Logo Valorant Echo" width={220} />
 
-            {/* Campo Email */}
             <label className="w-full">
               Email:
               <input
@@ -62,7 +55,6 @@ const LoginForm = () => {
               )}
             </label>
 
-            {/* Campo Senha */}
             <label className="w-full">
               Senha:
               <input
@@ -72,9 +64,7 @@ const LoginForm = () => {
                 className="mt-1 w-full h-10 px-3 rounded-md bg-white text-gray-700 border border-gray-300 focus:outline-none"
               />
               {errors.password && (
-                <small className="text-red-400">
-                  {errors.password.message}
-                </small>
+                <small className="text-red-400">{errors.password.message}</small>
               )}
             </label>
           </div>
@@ -106,6 +96,8 @@ const LoginForm = () => {
           </p>
         </form>
       </div>
+
+      
     </div>
   );
 };
