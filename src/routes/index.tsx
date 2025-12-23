@@ -9,6 +9,7 @@ import RegisterPage from "../pages/RegisterPage";
 import Agent from "../components/Agent";
 import Profile from "../components/Profile/Profile";
 import Weapon from "../components/Weapon";
+import Nothing from "../components/Nothing";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const AppRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
+        <Route path="/nada" element={<Nothing />} />
 
         <Route path="/weapons" element={<WeaponsPage />} />
         <Route path="/weapons/:uuid" element={<Weapon />} />
