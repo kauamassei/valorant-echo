@@ -8,123 +8,177 @@ const Navbar = () => {
   const logged = isLoggedIn();
 
   return (
-    <header className="bg-white fixed top-0 left-0 w-full z-50">
-      <nav className="bg-[#14141A]">
-        <div className="flex justify-between items-center h-16 p-10">
-          <div>
-            <a href="/">
-              <img
-                src={valorantEchoLogo}
-                alt="Logo Valorant Echo"
-                width={250}
-              />
-            </a>
-          </div>
+    <header className="fixed top-0 left-0 w-full z-50 overflow-x-hidden">
+      <nav className="bg-[#14141A] shadow-md">
+        <div
+          className="
+            max-w-7xl mx-auto
+            flex items-center justify-between
+            min-h-[62px] md:h-16
+            px-3 md:px-10
+          "
+        >
+          {/* LOGO */}
+          <a href="/" className="flex items-center">
+            <img
+              src={valorantEchoLogo}
+              alt="Logo Valorant Echo"
+              className="w-[180px] md:w-[220px] h-auto object-contain"
+            />
+          </a>
 
-          <ul className="hidden md:flex items-center justify-between m-0 p-0 gap-20 ml-auto text-white">
+          {/* LINKS DESKTOP (SEM MAP) */}
+          <ul className="hidden md:flex items-center gap-16 text-sm font-medium text-white ml-auto">
             <li>
-              <a href="/" className="hover:text-[#FF7272] transition-all">
+              <a
+                href="/"
+                className="
+                  relative transition-colors hover:text-[#FF7272]
+                  after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-[#FF7272] after:transition-all
+                  hover:after:w-full
+                "
+              >
                 Home
               </a>
             </li>
+
             <li>
-              <a href="/agents" className="hover:text-[#FF7272]">
+              <a
+                href="/agents"
+                className="
+                  relative transition-colors hover:text-[#FF7272]
+                  after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-[#FF7272] after:transition-all
+                  hover:after:w-full
+                "
+              >
                 Agentes
               </a>
             </li>
+
             <li>
-              <a href="/weapons" className="hover:text-[#FF7272]">
+              <a
+                href="/weapons"
+                className="
+                  relative transition-colors hover:text-[#FF7272]
+                  after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-[#FF7272] after:transition-all
+                  hover:after:w-full
+                "
+              >
                 Armas
               </a>
             </li>
+
             <li>
-              <a href="" className="hover:text-[#FF7272]">
+              <a
+                href="/events"
+                className="
+                  relative transition-colors hover:text-[#FF7272]
+                  after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-[#FF7272] after:transition-all
+                  hover:after:w-full
+                "
+              >
                 Eventos
               </a>
             </li>
           </ul>
 
-          {/* DESKTOP: Login ou Perfil */}
+          {/* DESKTOP LOGIN / PROFILE */}
           {!logged ? (
-            <button className="hidden md:flex bg-[#FF7272] rounded-sm text-white ml-10 pl-4 pr-4 pt-1 pb-1">
-              <a href="/login">Login</a>
-            </button>
+            <a
+              href="/login"
+              className="
+                hidden md:inline-flex ml-10
+                items-center justify-center
+                bg-[#FF7272] text-white
+                text-sm font-semibold
+                px-5 py-2
+                rounded-md
+                hover:brightness-110 transition-all
+              "
+            >
+              Login
+            </a>
           ) : (
             <a
               href="/profile"
-              className="hidden md:flex ml-10 text-white hover:text-[#FF7272] transition-all"
-              title="Meu Perfil"
+              className="
+                hidden md:flex ml-10
+                w-9 h-9
+                items-center justify-center
+                rounded-full
+                border border-[#FF7272]
+                hover:bg-[#FF7272]
+                transition-all
+              "
             >
               👤
             </a>
           )}
 
+          {/* BOTÃO MOBILE */}
           <button
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-1xl md:hidden bg-[#FF7272] rounded-md text-white ml-10 pl-2 pr-2 pt-1 pb-1"
+            aria-expanded={menuOpen}
+            className="
+              md:hidden
+              flex items-center justify-center
+              bg-[#FF7272] text-white
+              rounded-lg
+              w-10 h-10
+              text-xl font-bold
+              leading-none
+              ml-3
+              hover:brightness-110
+              transition-all
+            "
           >
-            {menuOpen ? (
-              <span className="text-sm">X</span>
-            ) : (
-              <span className="text-sm">☰</span>
-            )}
+            {menuOpen ? "✕" : "☰"}
           </button>
         </div>
 
-        {/* MOBILE MENU */}
-        <ul
+        {/* MENU MOBILE */}
+        <div
           id="mobile-menu"
           className={`
-            md:hidden w-full bg-[#14141A] text-white flex flex-col items-center gap-4 px-4
-            transition-all duration-300 ease-in-out transform overflow-hidden
+            md:hidden
+            bg-[#14141A]
+            border-t border-white/10
+            transition-all duration-300
             ${
               menuOpen
-                ? "opacity-100 translate-y-0 max-h-80"
-                : "opacity-0 -translate-y-4 max-h-0 pointer-events-none"
+                ? "max-h-[400px] opacity-100"
+                : "max-h-0 opacity-0 pointer-events-none"
             }
+            overflow-hidden
           `}
         >
-          <li>
-            <a href="/" className="hover:text-[#FF7272] transition-all">
-              Home
-            </a>
-          </li>
+          <ul className="flex flex-col gap-6 py-6 text-center text-white">
+            <li><a href="/" className="hover:text-[#FF7272]">Home</a></li>
+            <li><a href="/agents" className="hover:text-[#FF7272]">Agentes</a></li>
+            <li><a href="/weapons" className="hover:text-[#FF7272]">Armas</a></li>
+            <li><a href="/events" className="hover:text-[#FF7272]">Eventos</a></li>
 
-          <li>
-            <a href="/agents" className="hover:text-[#FF7272]">
-              Agentes
-            </a>
-          </li>
+            <div className="mx-auto w-2/3 h-px bg-white/10" />
 
-          <li>
-            <a href="/weapons" className="hover:text-[#FF7272]">
-              Armas
-            </a>
-          </li>
-
-          <li>
-            <a href="/weapons" className="hover:text-[#FF7272]">
-              Eventos
-            </a>
-          </li>
-
-          {/* MOBILE: Login ou Meu Perfil */}
-          {!logged ? (
-            <li>
-              <a href="/login" className="hover:text-[#FF7272]">
-                Login
-              </a>
-            </li>
-          ) : (
-            <li>
-              <a href="/profile" className="hover:text-[#FF7272]">
-                Meu Perfil
-              </a>
-            </li>
-          )}
-        </ul>
+            {!logged ? (
+              <li>
+                <a href="/login" className="text-[#FF7272] font-semibold">
+                  Login
+                </a>
+              </li>
+            ) : (
+              <li>
+                <a href="/profile" className="hover:text-[#FF7272]">
+                  Meu Perfil
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
       </nav>
     </header>
   );
