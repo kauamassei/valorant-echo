@@ -105,7 +105,7 @@ const Navbar = () => {
           </li>
 
           <li>
-            <a href="" className="hover:text-[#FF7272]">
+            <a href="/weapons" className="hover:text-[#FF7272]">
               Eventos
             </a>
           </li>
