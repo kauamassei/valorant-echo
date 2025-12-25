@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Weapons from "../components/Weapons";
+import Footer from "../components/Footer";
 
 const WeaponsPage = () => {
   return (
@@ -18,6 +19,9 @@ const WeaponsPage = () => {
           <Weapons />
         </div>
       </motion.div>
+      <section>
+            <Footer />
+          </section>
     </>
   );
 };

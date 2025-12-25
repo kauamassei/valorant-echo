@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Agents from "../components/Agents";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const AgentsPage = () => {
   return (
@@ -15,6 +16,9 @@ const AgentsPage = () => {
       >
         <Agents />
       </motion.div>
+      <section>
+            <Footer />
+          </section>
     </>
   );
 };

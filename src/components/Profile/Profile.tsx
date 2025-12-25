@@ -5,6 +5,7 @@ import ProfileInfo from "./ProfileInfo";
 import AccountSection from "./AccountSection";
 import Navbar from "../Navbar";
 import api from "../../services/api";
+import Footer from "../Footer";
 
 export interface UserData {
   email: string;
@@ -66,6 +67,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <section>
+            <Footer />
+          </section>
     </>
   );
 };
