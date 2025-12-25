@@ -16,6 +16,7 @@ interface AgenteSetup {
   uuid: string;
   displayName: string;
   description: string;
+  displayIcon: string;
   fullPortrait: string;
   abilities: Ability[];
 }
@@ -64,6 +65,7 @@ const Agent = () => {
         <Navbar />
 
         <div className="px-8 py-12">
+        {/* <img src={agent.displayIcon} alt="" className="absolute opacity-20 w-[30%]" /> */}
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
             <motion.div
               initial={{ opacity: 0, x: -80 }}
@@ -71,6 +73,7 @@ const Agent = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="shrink-0 relative"
             >
+              
               <img
                 src={agent.fullPortrait}
                 alt={agent.displayName}
