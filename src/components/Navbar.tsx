@@ -73,7 +73,7 @@ const Navbar = () => {
 
             <li>
               <a
-                href="/nada"
+                href="/maps"
                 className="
                   relative transition-colors hover:text-[#FF7272]
                   after:absolute after:left-0 after:-bottom-1 after:h-[2px]
@@ -81,7 +81,7 @@ const Navbar = () => {
                   hover:after:w-full
                 "
               >
-                Eventos
+                Mapas
               </a>
             </li>
           </ul>
@@ -160,7 +160,7 @@ const Navbar = () => {
             <li><a href="/" className="hover:text-[#FF7272]">Home</a></li>
             <li><a href="/agents" className="hover:text-[#FF7272]">Agentes</a></li>
             <li><a href="/weapons" className="hover:text-[#FF7272]">Armas</a></li>
-            <li><a href="/nada" className="hover:text-[#FF7272]">Eventos</a></li>
+            <li><a href="/maps" className="hover:text-[#FF7272]">Mapas</a></li>
 
             <div className="mx-auto w-2/3 h-px bg-white/10" />
 

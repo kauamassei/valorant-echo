@@ -11,6 +11,7 @@ import Profile from "../components/Profile/Profile";
 import Weapon from "../components/Weapon";
 import Nothing from "../components/Nothing";
 import { ToastContainer } from "react-toastify";
+import Maps from "../components/Maps";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -34,6 +35,8 @@ const AppRoutes = () => {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/nada" element={<Nothing />} />
+
+          <Route path="/maps" element={<Maps />} />
 
           <Route path="/weapons" element={<WeaponsPage />} />
           <Route path="/weapons/:uuid" element={<Weapon />} />

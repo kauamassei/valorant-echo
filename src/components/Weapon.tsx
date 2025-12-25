@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 import { weaponTheme } from "../themes/weaponTheme";
 import apiGame from "../services/apiGame";
+import Footer from "./Footer";
 
 interface WeaponStats {
   fireRate: number;
@@ -166,6 +167,7 @@ const Weapon = () => {
           )}
         </div>
       </div>
+      <Footer />
     </motion.div>
   );
 };

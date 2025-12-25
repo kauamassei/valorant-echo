@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 import { agentTheme } from "../themes/agentTheme";
 import apiGame from "../services/apiGame";
+import Footer from "./Footer";
 
 interface Ability {
   slot: string;
@@ -152,6 +153,7 @@ const Agent = () => {
           </motion.div>
         </div>
       </div>
+      <Footer />
     </motion.div>
   );
 };
