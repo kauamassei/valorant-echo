@@ -5,8 +5,8 @@ import Navbar from "./Navbar";
 interface Maps {
     uuid: string;
     displayName: string;
-    displayIcon: string | null;
-    listViewIcon: string | null;
+    displayIcon: string;
+    listViewIcon: string;
 }
 
 
@@ -36,12 +36,14 @@ const Maps = () => {
         <Navbar />
         <div className="mt-24">
             {maps.map((mapa) => (
-                <li key={mapa.uuid}>
+              <div>
+                 <img src={mapa.listViewIcon} alt="" />
+                    <li key={mapa.uuid}>
                     <h3>{mapa.displayName}</h3>
-                    {mapa.displayIcon}
-
-                    {mapa.listViewIcon}
+                  <img src={mapa.displayIcon} alt="" />
                 </li>
+              </div>
+
             ))}
         </div>
         </>
