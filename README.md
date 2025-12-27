@@ -55,8 +55,7 @@ Além do conteúdo informativo, o projeto conta com **autenticação de usuário
 - PostgreSQL
 - Prisma ORM
 - Autenticação com JWT
-- 
-([Github](https://github.com/kauamassei/project-echo-svr))
+- ([Repositório Backend](https://github.com/kauamassei/project-echo-svr))
 
 ---
 
