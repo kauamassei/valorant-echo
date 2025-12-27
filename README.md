@@ -20,13 +20,13 @@ Além do conteúdo informativo, o projeto conta com **autenticação de usuário
 
 ## ✔ Features atuais
 
-- 📊 Visualização de dados do jogo  
+- Visualização de dados do jogo  
   - Agentes  
   - Mapas  
   - Armas  
 
-- 🔐 Autenticação de usuários  
-- 👤 Perfil personalizado  
+- Autenticação de usuários  
+- Perfil personalizado  
   - Nick no jogo  
   - Rank  
   - Agentes favoritos  
@@ -35,9 +35,9 @@ Além do conteúdo informativo, o projeto conta com **autenticação de usuário
 
 ## 🚀 Features em desenvolvimento
 
-- 🔍 Busca e visualização de perfis de outros jogadores  
-- 🤝 Recursos sociais para interação entre usuários  
-- 📈 Sistema de Treino personalizado para evolução do jogador
+-  Busca e visualização de perfis de outros jogadores  
+-  Recursos sociais para interação entre usuários  
+-  Sistema de Treino personalizado para evolução do jogador
 
 ---
 
@@ -65,7 +65,7 @@ Além do conteúdo informativo, o projeto conta com **autenticação de usuário
 </p>
 
 <p align="center">
-  <img src="public/loginPage.PNG" alt="Valorant Echo Preview" />
+  <img src="public/loginPreview.png" alt="Valorant Echo Preview" />
 </p>
 
 ---
