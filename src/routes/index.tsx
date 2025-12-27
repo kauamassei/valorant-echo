@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import Maps from "../components/Maps";
 import Privacy from "../components/Privacy";
 import Terms from "../components/Terms";
+import MapInfo from "../components/MapInfo";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -42,6 +43,7 @@ const AppRoutes = () => {
           <Route path="/termos" element={<Terms />} />
 
           <Route path="/maps" element={<Maps />} />
+          <Route path="/maps/:uuid" element={<MapInfo />} />
 
           <Route path="/weapons" element={<WeaponsPage />} />
           <Route path="/weapons/:uuid" element={<Weapon />} />

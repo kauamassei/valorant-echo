@@ -26,7 +26,9 @@ const Agents = () => {
   }, []);
 
   return (
+    
     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 p-6 pt-24 bg-[#070B12] ">
+
       {agents.map((agent) => (
         <div
           key={agent.uuid}
