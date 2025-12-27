@@ -13,20 +13,7 @@ const SectionHome = () => {
         lg:grid-cols-3
         place-items-center
       ">
-        <SpotlightCard
-          className="w-full max-w-sm"
-          spotlightColor="rgba(255, 0, 80, 0.25)"
-        >
-          <div className="flex flex-col gap-3">
-            <span className="text-sm font-semibold text-red-400">NOVO</span>
-            <h3 className="text-2xl font-bold text-white">
-              Sistema de Treino
-            </h3>
-            <p className="text-sm text-neutral-400">
-              Receba um treino personalizado com as melhores dicas para evoluir.
-            </p>
-          </div>
-        </SpotlightCard>
+
 
         <SpotlightCard
           className="w-full max-w-sm"
@@ -35,10 +22,10 @@ const SectionHome = () => {
           <div className="flex flex-col gap-3">
             <span className="text-sm font-semibold text-red-400">NOVO</span>
             <h3 className="text-2xl font-bold text-white">
-              Sistema de Login
+              Ecossistema Valorant
             </h3>
             <p className="text-sm text-neutral-400">
-              Autenticação segura com JWT e refresh token.
+              Explore as informações essenciais do universo do game
             </p>
           </div>
         </SpotlightCard>
@@ -53,7 +40,22 @@ const SectionHome = () => {
               Perfil Personalizado
             </h3>
             <p className="text-sm text-neutral-400">
-              Crie e dê ao seu perfil a cara de Valorant!
+              Crie, personalize e dê ao seu perfil a cara de Valorant!
+            </p>
+          </div>
+        </SpotlightCard>
+
+                <SpotlightCard
+          className="w-full max-w-sm"
+          spotlightColor="rgba(255, 0, 80, 0.25)"
+        >
+          <div className="flex flex-col gap-3">
+            <span className="text-sm font-semibold text-yellow-400">EM DESENVOLVIMENTO</span>
+            <h3 className="text-2xl font-bold text-white">
+              Sistema de Treino
+            </h3>
+            <p className="text-sm text-neutral-400">
+              Receba um treino personalizado com as melhores dicas para evoluir.
             </p>
           </div>
         </SpotlightCard>
