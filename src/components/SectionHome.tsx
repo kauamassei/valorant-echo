@@ -23,7 +23,7 @@ const SectionHome = () => {
               Sistema de Treino
             </h3>
             <p className="text-sm text-neutral-400">
-              Receba um treino personalizado com as melhores dicas de como jogar.
+              Receba um treino personalizado com as melhores dicas para evoluir.
             </p>
           </div>
         </SpotlightCard>

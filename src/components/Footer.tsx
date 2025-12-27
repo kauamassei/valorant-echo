@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-[#0b0f14] border-t border-red-500/20">
@@ -96,12 +98,12 @@ const Footer = () => {
           </span>
 
           <div className="flex gap-6">
-            <a href="#" className="hover:text-red-400 transition">
+          <Link to='/privacidade' className="hover:text-red-400 transition">
               Privacidade
-            </a>
-            <a href="#" className="hover:text-red-400 transition">
+            </Link>
+            <Link to='/termos' className="hover:text-red-400 transition">
               Termos
-            </a>
+            </Link>
           </div>
         </div>
       </div>
