@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { agentTheme } from "../themes/agentTheme";
 import apiGame from "../services/apiGame";
 import Footer from "./Footer";
+import api from "../services/api";
 
 interface Ability {
   slot: string;
@@ -24,6 +25,7 @@ interface AgenteSetup {
 
 const Agent = () => {
   const [agent, setAgent] = useState<AgenteSetup | null>(null);
+  const [isFavorite, setIsFavorite] = useState(false);
   const { uuid } = useParams();
 
   useEffect(() => {
@@ -40,6 +42,19 @@ const Agent = () => {
   }, [uuid]);
 
   if (!agent) return <p className="text-white p-6">Carregando...</p>;
+
+  const handleFavorite = async () => {
+    try {
+      await api.post("/favorites/agent", {
+        agentUuid: uuid,
+      });
+
+      // opcional: atualizar estado local
+      setIsFavorite((prev) => !prev);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const theme = agentTheme[agent.displayName] || {
     primary: "#FF4655",
@@ -66,7 +81,7 @@ const Agent = () => {
         <Navbar />
 
         <div className="px-8 py-12">
-        {/* <img src={agent.displayIcon} alt="" className="absolute opacity-20 w-[30%]" /> */}
+          {/* <img src={agent.displayIcon} alt="" className="absolute opacity-20 w-[30%]" /> */}
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
             <motion.div
               initial={{ opacity: 0, x: -80 }}
@@ -74,7 +89,6 @@ const Agent = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="shrink-0 relative"
             >
-              
               <img
                 src={agent.fullPortrait}
                 alt={agent.displayName}
@@ -100,6 +114,7 @@ const Agent = () => {
                 {agent.displayName}
               </h1>
 
+
               <div
                 className="h-1 w-60 mt-4 mb-6"
                 style={{ backgroundColor: "var(--agent-color)" }}
@@ -108,7 +123,37 @@ const Agent = () => {
               <p className="text-gray-300 leading-relaxed text-lg">
                 {agent.description}
               </p>
+              <div className="mt-6">
+              <button
+                onClick={handleFavorite}
+                className={`
+    flex items-center gap-2
+    px-4 py-2
+    rounded-md
+    text-sm font-semibold
+    transition-all duration-200
+    ${
+      isFavorite
+        ? "bg-[#F96666] text-white hover:bg-red-700"
+        : "bg-zinc-800 text-zinc-200 hover:bg-zinc-700"
+    }
+  `}
+              >
+                <span
+                  className={`
+      text-lg transition-transform duration-200
+      ${isFavorite ? "scale-110" : "scale-100"}
+    `}
+                >
+                  {isFavorite ? "⭐" : "☆"}
+                </span>
+
+                {isFavorite ? "Remover dos favoritos" : "Favoritar agente"}
+              </button>
+
+              </div>
             </motion.div>
+            
           </div>
 
           <motion.div

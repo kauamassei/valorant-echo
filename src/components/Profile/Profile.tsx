@@ -6,6 +6,7 @@ import AccountSection from "./AccountSection";
 import Navbar from "../Navbar";
 import api from "../../services/api";
 import Footer from "../Footer";
+import FavAgents from "./FavAgents";
 
 export interface UserData {
   email: string;
@@ -62,6 +63,8 @@ const Profile = () => {
 
           <div className="pt-16 px-6 pb-6">
             <ProfileInfo name={user.name} />
+
+            <FavAgents />
 
             <AccountSection email={user.email} />
           </div>
