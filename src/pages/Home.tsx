@@ -47,7 +47,7 @@ const Home = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="/categories"
+                  href="/echo"
                   className="bg-[#FF7272] hover:bg-[#ff5a5a] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 shadow-lg shadow-[#FF7272]/30"
                 >
                   Echo
@@ -72,9 +72,9 @@ const Home = () => {
           </section>
 
           {/* FOOTER */}
-            <section className="mt-32">
-              <Footer />
-            </section>
+          <section className="mt-32">
+            <Footer />
+          </section>
         </main>
       </motion.div>
     </>

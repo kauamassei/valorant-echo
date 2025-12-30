@@ -15,6 +15,7 @@ import Maps from "../components/Maps";
 import Privacy from "../components/Privacy";
 import Terms from "../components/Terms";
 import MapInfo from "../components/MapInfo";
+import EchoDashboard from "../components/Training/EchoDashboard";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -38,6 +39,8 @@ const AppRoutes = () => {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/nada" element={<Nothing />} />
+
+          <Route path="/echo" element={<EchoDashboard />} />
 
           <Route path="/privacidade" element={<Privacy />} />
           <Route path="/termos" element={<Terms />} />

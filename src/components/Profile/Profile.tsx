@@ -22,17 +22,17 @@ const Profile = () => {
     const loadUser = async () => {
       try {
         const { data } = await api.get("/me");
-  
+
         setUser(data.user);
         setAvatarPreview(data.user.avatar || defaulAvatar);
       } catch (err) {
         console.error("Erro ao carregar perfil", err);
       }
     };
-  
+
     loadUser();
   }, []);
-  
+
   const handleUpload = async (file: File) => {
     const formData = new FormData();
     formData.append("image", file);
@@ -57,7 +57,7 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[#070B12] pt-24">
+      <div className="min-h-screen bg-[#070B12] pt-24 pb-16">
         <div className="mx-auto max-w-2xl rounded-2xl bg-[#0B101A] shadow-lg">
           <ProfileHeader avatar={avatarPreview} onUpload={handleUpload} />
 
@@ -71,8 +71,8 @@ const Profile = () => {
         </div>
       </div>
       <section>
-            <Footer />
-          </section>
+        <Footer />
+      </section>
     </>
   );
 };
