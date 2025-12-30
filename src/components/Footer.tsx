@@ -24,6 +24,13 @@ const Footer = () => {
               Navegação
             </h3>
             <ul className="space-y-3 text-sm text-neutral-400">
+
+            <li>
+                <a className="hover:text-red-400 transition" href="/echo">
+                  Echo
+                </a>
+              </li>
+
               <li>
                 <a className="hover:text-red-400 transition" href="/agents">
                   Agentes

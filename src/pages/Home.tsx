@@ -62,11 +62,10 @@ const Home = () => {
               </div>
             </div>
 
-            {/* FADE DE TRANSIÇÃO (OPÇÃO 1) */}
             <div className="pointer-events-none absolute bottom-0 left-0 w-full h-40 bg-linear-to-t from-[#1c1c1c] to-transparent" />
           </section>
 
-          {/* SECTION HOME */}
+
           <section className="mt-32">
             <SectionHome />
           </section>
