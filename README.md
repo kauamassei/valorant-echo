@@ -24,7 +24,7 @@ Além do conteúdo informativo, o projeto conta com **autenticação de usuário
   - Agentes  
   - Mapas  
   - Armas  
-
+-  Sistema de Treino personalizado para evolução do jogador
 - Autenticação de usuários  
 - Perfil personalizado  
   - Nick no jogo  
@@ -37,7 +37,6 @@ Além do conteúdo informativo, o projeto conta com **autenticação de usuário
 
 -  Busca e visualização de perfis de outros jogadores  
 -  Recursos sociais para interação entre usuários  
--  Sistema de Treino personalizado para evolução do jogador
 
 ---
 
