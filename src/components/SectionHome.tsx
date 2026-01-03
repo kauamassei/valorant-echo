@@ -25,7 +25,7 @@ const SectionHome = () => {
               Ecossistema Valorant
             </h3>
             <p className="text-sm text-neutral-400">
-              Explore as informações essenciais do universo do game
+              Explore as informações essenciais do universo do game.
             </p>
           </div>
         </SpotlightCard>

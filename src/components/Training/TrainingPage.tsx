@@ -36,7 +36,6 @@ const TrainingPage = () => {
   const [plans, setPlans] = useState<TrainingPlan[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // 🔒 USUÁRIO NÃO LOGADO
   if (!logged) {
     return (
       <>
@@ -65,7 +64,6 @@ const TrainingPage = () => {
     );
   }
 
-  // 🔁 BUSCA DOS TREINOS
   useEffect(() => {
     async function fetchTraining() {
       try {
@@ -83,13 +81,10 @@ const TrainingPage = () => {
 
   const hasTraining = plans.length > 0;
 
-  // 🗑️ CONFIRMAÇÃO DE DELETE
   async function confirmDeleteTraining(planId: number) {
     try {
       await api.delete(`/training/${planId}`);
-
       setPlans((prev) => prev.filter((plan) => plan.id !== planId));
-
       toast.success("Plano de treino apagado com sucesso");
     } catch (error) {
       console.error("Erro ao apagar treino", error);
@@ -173,7 +168,6 @@ const TrainingPage = () => {
                 <div className="flex items-center justify-between mb-2">
                   <h1 className="text-2xl font-bold">{plan.title}</h1>
 
-                  {/* BOTÕES DESKTOP */}
                   <div className="hidden md:flex gap-3">
                     <button
                       onClick={() => navigate("/dashboard/stepper")}
@@ -194,7 +188,7 @@ const TrainingPage = () => {
                 <p className="text-sm text-gray-400 mb-6">
                   Rank: {plan.trainingProfile.rank} • Função:{" "}
                   {plan.trainingProfile.role} • Objetivo:{" "}
-                  {plan.trainingProfile.goal.replace("_", " ")}
+                  {plan.trainingProfile.goal.replace(/_/g, " ")}
                 </p>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -208,7 +202,6 @@ const TrainingPage = () => {
                   ))}
                 </div>
 
-                {/* BOTÕES MOBILE */}
                 <div className="mt-6 flex flex-col gap-3 md:hidden">
                   <button
                     onClick={() => navigate("/dashboard/stepper")}

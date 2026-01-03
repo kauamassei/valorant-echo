@@ -58,110 +58,129 @@ const UserStepper = () => {
   }
 
   return (
-    <div className="text-white">
-      <Stepper
-        initialStep={1}
-        onFinalStepCompleted={handleCreateTraining}
-        backButtonText="Voltar"
-        nextButtonText="Continuar"
-      >
-        <Step>
-          <h2 className="text-2xl font-bold mb-2">
-            Bem-vindo à sessão de treinamento Echo🕹️
-          </h2>
-          <p className="text-gray-300">
-            Responda algumas perguntas para criarmos um treino personalizado
-            para você no Valorant.
-          </p>
-        </Step>
-
-        <Step>
-          <h2 className="mb-4 text-xl font-semibold">
-            Qual é o seu rank atual?
-          </h2>
-
-          <div className="flex flex-wrap gap-2">
-            {ranks.map((r) => (
-              <button
-                key={r.value}
-                onClick={() => setRank(r.value)}
-                className={`border px-4 py-2 rounded-2xl transition-all
-                  ${
-                    rank === r.value
-                      ? "bg-[#F96666] border-[#F96666]"
-                      : "border-gray-500 hover:bg-[#686868]"
-                  }`}
-              >
-                {r.label}
-              </button>
-            ))}
+    <>
+      {loading && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <span className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
+            <p className="text-white text-lg font-medium">
+              Criando seu treino...
+            </p>
           </div>
-        </Step>
+        </div>
+      )}
 
-        <Step>
-          <h2 className="mb-4 text-xl font-semibold">
-            Qual função você mais joga?
-          </h2>
+      <div className="text-white">
+        <Stepper
+          initialStep={1}
+          onFinalStepCompleted={handleCreateTraining}
+          backButtonText="Voltar"
+          nextButtonText="Continuar"
+        >
+          <Step>
+            <h2 className="text-2xl font-bold mb-2">
+              Bem-vindo à sessão de treinamento Echo🕹️
+            </h2>
+            <p className="text-gray-300">
+              Responda algumas perguntas para criarmos um treino personalizado
+              para você no Valorant.
+            </p>
+          </Step>
 
-          <div className="flex flex-wrap gap-3">
-            {roles.map((r) => (
-              <button
-                key={r.value}
-                onClick={() => setRole(r.value)}
-                className={`border px-4 py-2 rounded-2xl transition-all
-                  ${
-                    role === r.value
-                      ? "bg-[#F96666] border-[#F96666]"
-                      : "border-gray-500 hover:bg-[#686868]"
-                  }`}
-              >
-                {r.label}
-              </button>
-            ))}
-          </div>
-        </Step>
+          <Step>
+            <h2 className="mb-4 text-xl font-semibold">
+              Qual é o seu rank atual?
+            </h2>
 
-        <Step>
-          <h2 className="mb-4 text-xl font-semibold">
-            Qual é o seu principal objetivo?
-          </h2>
-
-          <div className="flex flex-wrap gap-3">
-            {objectives.map((obj) => (
-              <button
-                key={obj.value}
-                onClick={() => setObjective(obj.value)}
-                className={`border px-4 py-2 rounded-2xl transition-all
-                  ${
-                    objective === obj.value
-                      ? "bg-[#F96666] border-[#F96666]"
-                      : "border-gray-500 hover:bg-[#686868]"
-                  }`}
-              >
-                {obj.label}
-              </button>
-            ))}
-          </div>
-        </Step>
-
-        <Step>
-          <h2 className="text-2xl font-bold mb-3">Tudo pronto!</h2>
-
-          <ul className="text-gray-200 list-disc list-inside space-y-1">
-            <li><strong>Rank:</strong> {rank}</li>
-            <li><strong>Função:</strong> {role}</li>
-            <li><strong>Objetivo:</strong> {objective}</li>
-          </ul>
-
-          {loading && (
-            <div className="mt-6 flex items-center gap-2 text-gray-400">
-              <span className="animate-spin h-4 w-4 border-2 border-gray-400 border-t-transparent rounded-full" />
-              Gerando seu plano de treino...
+            <div className="flex flex-wrap gap-2">
+              {ranks.map((r) => (
+                <button
+                  key={r.value}
+                  onClick={() => setRank(r.value)}
+                  className={`border px-4 py-2 rounded-2xl transition-all
+                    ${
+                      rank === r.value
+                        ? "bg-[#F96666] border-[#F96666]"
+                        : "border-gray-500 hover:bg-[#686868]"
+                    }`}
+                >
+                  {r.label}
+                </button>
+              ))}
             </div>
-          )}
-        </Step>
-      </Stepper>
-    </div>
+          </Step>
+
+          <Step>
+            <h2 className="mb-4 text-xl font-semibold">
+              Qual função você mais joga?
+            </h2>
+
+            <div className="flex flex-wrap gap-3">
+              {roles.map((r) => (
+                <button
+                  key={r.value}
+                  onClick={() => setRole(r.value)}
+                  className={`border px-4 py-2 rounded-2xl transition-all
+                    ${
+                      role === r.value
+                        ? "bg-[#F96666] border-[#F96666]"
+                        : "border-gray-500 hover:bg-[#686868]"
+                    }`}
+                >
+                  {r.label}
+                </button>
+              ))}
+            </div>
+          </Step>
+
+          <Step>
+            <h2 className="mb-4 text-xl font-semibold">
+              Qual é o seu principal objetivo?
+            </h2>
+
+            <div className="flex flex-wrap gap-3">
+              {objectives.map((obj) => (
+                <button
+                  key={obj.value}
+                  onClick={() => setObjective(obj.value)}
+                  className={`border px-4 py-2 rounded-2xl transition-all
+                    ${
+                      objective === obj.value
+                        ? "bg-[#F96666] border-[#F96666]"
+                        : "border-gray-500 hover:bg-[#686868]"
+                    }`}
+                >
+                  {obj.label}
+                </button>
+              ))}
+            </div>
+          </Step>
+
+          <Step>
+            <h2 className="text-2xl font-bold mb-3">Tudo pronto!</h2>
+
+            <ul className="text-gray-200 list-disc list-inside space-y-1">
+              <li>
+                <strong>Rank:</strong> {rank}
+              </li>
+              <li>
+                <strong>Função:</strong> {role}
+              </li>
+              <li>
+                <strong>Objetivo:</strong> {objective}
+              </li>
+            </ul>
+
+            {loading && (
+              <div className="mt-6 flex items-center gap-2 text-gray-400">
+                <span className="animate-spin h-4 w-4 border-2 border-gray-400 border-t-transparent rounded-full" />
+                Gerando seu plano de treino...
+              </div>
+            )}
+          </Step>
+        </Stepper>
+      </div>
+    </>
   );
 };
 

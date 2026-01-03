@@ -1,17 +1,20 @@
+import { useState } from "react";
 import useForms from "../hooks/useRegisterForm";
 import type { FormSchema } from "../schemas/formSchema";
 import valorantTransparent from "../assets/valorantTransparent.png";
 import neonBackground from "../assets/neonBackground.png";
-import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 const RegisterForm = () => {
   const { register, handleSubmit, errors } = useForms();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (data: FormSchema) => {
     console.log(data);
+    setLoading(true);
+
     api
       .post("/cadastro", data)
       .then(function (response) {
@@ -20,11 +23,25 @@ const RegisterForm = () => {
       })
       .catch(function (error) {
         console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
   return (
     <>
+      {loading && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <span className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
+            <p className="text-white text-lg font-medium">
+              Criando sua conta...
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="relative min-h-screen bg-[#1c1c1c] overflow-hidden">
         <img
           src={neonBackground}
@@ -34,7 +51,7 @@ const RegisterForm = () => {
 
         <div className="relative z-10 grid place-items-center min-h-screen p-4">
           <form
-            className=" w-full max-w-sm bg-white/20 backdrop-blur-lg border border-white/30 p-6 rounded-xl shadow-lg flex flex-col gap-4 text-white"
+            className="w-full max-w-sm bg-white/20 backdrop-blur-lg border border-white/30 p-6 rounded-xl shadow-lg flex flex-col gap-4 text-white"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col items-center gap-3">
@@ -43,9 +60,10 @@ const RegisterForm = () => {
                 alt="Logo Valorant Echo"
                 width={300}
               />
+
               <div className="flex flex-col gap-2 mb-2 w-full">
                 <label htmlFor="name" className="w-full">
-                  Nome:{" "}
+                  Nome:
                   <input
                     type="text"
                     id="name"
@@ -59,6 +77,7 @@ const RegisterForm = () => {
                     </small>
                   )}
                 </label>
+
                 <label htmlFor="email" className="w-full">
                   Email:
                   <input
@@ -74,6 +93,7 @@ const RegisterForm = () => {
                     </small>
                   )}
                 </label>
+
                 <label htmlFor="password" className="w-full">
                   Senha:
                   <input
@@ -89,7 +109,8 @@ const RegisterForm = () => {
                     </small>
                   )}
                 </label>
-                <label htmlFor="password" className="w-full">
+
+                <label htmlFor="confirmPassword" className="w-full">
                   Confirme sua senha:
                   <input
                     type="password"
@@ -108,15 +129,12 @@ const RegisterForm = () => {
 
               <button
                 type="submit"
-                className="bg-[#FF7272] hover:bg-[#ffb5b5] rounded-md py-3 w-full transition"
+                disabled={loading}
+                className="bg-[#FF7272] hover:bg-[#ffb5b5] rounded-md py-3 w-full transition disabled:opacity-70"
               >
                 Cadastrar
               </button>
-              <p className="text-center">Ou:</p>
-              <button className="bg-white rounded-md py-3 w-full flex justify-center items-center gap-2 text-black hover:bg-gray-200 transition">
-                <FcGoogle />
-                Fazer login com Google
-              </button>
+
 
               <p className="mt-4 text-center text-sm">
                 Já tem uma conta?{" "}
