@@ -69,6 +69,14 @@ Além do conteúdo informativo, o projeto conta com **autenticação de usuário
   <img src="public/loginPreview.png" alt="Valorant Echo Preview" />
 </p>
 
+<p align="center">
+  <img src="public/agentsPage.png" alt="Valorant Echo Preview" />
+</p>
+
+<p align="center">
+  <img src="public/agentPage.png" alt="Valorant Echo Preview" />
+</p>
+
 ---
 
 ## 📄 Status 
