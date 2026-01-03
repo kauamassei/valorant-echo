@@ -1,0 +1,43 @@
+/* Base do toast */
+.Toastify__toast {
+    background: #0f172a !important; /* mesmo bg dos cards */
+    color: #ffffff !important;
+    border: 1px solid #1f2933;
+    border-radius: 12px;
+    font-family: inherit;
+  }
+  
+  /* Toast de sucesso */
+  .Toastify__toast--success {
+    border-left: 6px solid #22c55e; /* verde */
+  }
+  
+  /* Toast de erro */
+  .Toastify__toast--error {
+    border-left: 6px solid #ef4444; /* vermelho */
+  }
+  
+  /* Toast de info */
+  .Toastify__toast--info {
+    border-left: 6px solid #3b82f6; /* azul */
+  }
+  
+  /* Toast de warning */
+  .Toastify__toast--warning {
+    border-left: 6px solid #facc15; /* amarelo */
+  }
+  
+  /* Botão de fechar */
+  .Toastify__close-button {
+    color: #9ca3af;
+  }
+  
+  /* Barra de progresso */
+  .Toastify__progress-bar {
+    background: linear-gradient(
+      to right,
+      #f96666,
+      #ef4444
+    );
+  }
+  

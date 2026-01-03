@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import Footer from "./Footer";
 
 const Privacy = () => {
   return (
@@ -74,6 +75,7 @@ const Privacy = () => {
           </section>
         </div>
       </main>
+      <Footer />
     </>
   );
 };

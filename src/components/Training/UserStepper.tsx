@@ -1,50 +1,70 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Stepper, { Step } from "../../ui/Stepper";
+import { createTrainingPlan } from "../../services/trainingApi";
 
 const ranks = [
-  "Ferro",
-  "Bronze",
-  "Prata",
-  "Ouro",
-  "Platina",
-  "Diamante",
-  "Ascendente",
-  "Imortal",
-  "Radiante",
+  { label: "Ferro", value: "ferro" },
+  { label: "Bronze", value: "bronze" },
+  { label: "Prata", value: "prata" },
+  { label: "Ouro", value: "ouro" },
+  { label: "Platina", value: "platina" },
+  { label: "Diamante", value: "diamante" },
+  { label: "Ascendente", value: "ascendente" },
+  { label: "Imortal", value: "imortal" },
+  { label: "Radiante", value: "radiante" },
 ];
 
-const roles = ["Duelista", "Iniciador", "Controlador", "Sentinela"];
+const roles = [
+  { label: "Duelista", value: "duelista" },
+  { label: "Iniciador", value: "iniciador" },
+  { label: "Controlador", value: "controlador" },
+  { label: "Sentinela", value: "sentinela" },
+];
 
 const objectives = [
-  "Melhorar mecânica",
-  "Melhorar mira",
-  "Noção de jogo",
-  "Posicionamento",
-  "Comunicação em equipe",
-  "Subir de rank",
+  { label: "Melhorar mecânica", value: "melhorar_mecanica" },
+  { label: "Melhorar mira", value: "melhorar_mira" },
+  { label: "Noção de jogo", value: "nocao_de_jogo" },
+  { label: "Posicionamento", value: "posicionamento" },
+  { label: "Comunicação em equipe", value: "comunicacao" },
+  { label: "Subir de rank", value: "subir_rank" },
 ];
 
 const UserStepper = () => {
   const [rank, setRank] = useState("");
   const [role, setRole] = useState("");
   const [objective, setObjective] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  async function handleCreateTraining() {
+    try {
+      setLoading(true);
+
+      await createTrainingPlan({
+        rank,
+        role,
+        goal: objective,
+      });
+
+      navigate("/dashboard/training");
+    } catch (error) {
+      console.error("Erro ao criar treino", error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="text-white">
       <Stepper
         initialStep={1}
-        onStepChange={(step) => console.log(step)}
-        onFinalStepCompleted={() =>
-          console.log({
-            rank,
-            role,
-            objective,
-          })
-        }
+        onFinalStepCompleted={handleCreateTraining}
         backButtonText="Voltar"
         nextButtonText="Continuar"
       >
-        {/* STEP 1 */}
         <Step>
           <h2 className="text-2xl font-bold mb-2">
             Bem-vindo à sessão de treinamento Echo🕹️
@@ -55,7 +75,6 @@ const UserStepper = () => {
           </p>
         </Step>
 
-        {/* STEP 2 - RANK */}
         <Step>
           <h2 className="mb-4 text-xl font-semibold">
             Qual é o seu rank atual?
@@ -64,46 +83,44 @@ const UserStepper = () => {
           <div className="flex flex-wrap gap-2">
             {ranks.map((r) => (
               <button
-                key={r}
-                onClick={() => setRank(r)}
-                className={`border border-gray-500 px-4 py-2 rounded-2xl transition-all duration-300
+                key={r.value}
+                onClick={() => setRank(r.value)}
+                className={`border px-4 py-2 rounded-2xl transition-all
                   ${
-                    rank === r
-                      ? "bg-red-600 border-red-600"
-                      : "hover:bg-[#686868]"
+                    rank === r.value
+                      ? "bg-[#F96666] border-[#F96666]"
+                      : "border-gray-500 hover:bg-[#686868]"
                   }`}
               >
-                {r}
+                {r.label}
               </button>
             ))}
           </div>
         </Step>
 
-        {/* STEP 3 - FUNÇÃO */}
         <Step>
           <h2 className="mb-4 text-xl font-semibold">
             Qual função você mais joga?
           </h2>
 
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex flex-wrap gap-3">
             {roles.map((r) => (
               <button
-                key={r}
-                onClick={() => setRole(r)}
-                className={`border border-gray-500 px-4 py-2 rounded-2xl transition-all duration-300
+                key={r.value}
+                onClick={() => setRole(r.value)}
+                className={`border px-4 py-2 rounded-2xl transition-all
                   ${
-                    role === r
-                      ? "bg-blue-600 border-blue-600"
-                      : "hover:bg-[#686868]"
+                    role === r.value
+                      ? "bg-[#F96666] border-[#F96666]"
+                      : "border-gray-500 hover:bg-[#686868]"
                   }`}
               >
-                {r}
+                {r.label}
               </button>
             ))}
           </div>
         </Step>
 
-        {/* STEP 4 - OBJETIVO */}
         <Step>
           <h2 className="mb-4 text-xl font-semibold">
             Qual é o seu principal objetivo?
@@ -112,44 +129,36 @@ const UserStepper = () => {
           <div className="flex flex-wrap gap-3">
             {objectives.map((obj) => (
               <button
-                key={obj}
-                onClick={() => setObjective(obj)}
-                className={`border border-gray-500 px-4 py-2 rounded-2xl transition-all duration-300
+                key={obj.value}
+                onClick={() => setObjective(obj.value)}
+                className={`border px-4 py-2 rounded-2xl transition-all
                   ${
-                    objective === obj
-                      ? "bg-green-600 border-green-600"
-                      : "hover:bg-[#686868]"
+                    objective === obj.value
+                      ? "bg-[#F96666] border-[#F96666]"
+                      : "border-gray-500 hover:bg-[#686868]"
                   }`}
               >
-                {obj}
+                {obj.label}
               </button>
             ))}
           </div>
         </Step>
 
-        {/* STEP FINAL */}
         <Step>
           <h2 className="text-2xl font-bold mb-3">Tudo pronto!</h2>
 
-          <p className="text-gray-300 mb-2">
-            Com base nas suas respostas:
-          </p>
-
           <ul className="text-gray-200 list-disc list-inside space-y-1">
-            <li>
-              <strong>Rank:</strong> {rank || "Não informado"}
-            </li>
-            <li>
-              <strong>Função:</strong> {role || "Não informada"}
-            </li>
-            <li>
-              <strong>Objetivo:</strong> {objective || "Não informado"}
-            </li>
+            <li><strong>Rank:</strong> {rank}</li>
+            <li><strong>Função:</strong> {role}</li>
+            <li><strong>Objetivo:</strong> {objective}</li>
           </ul>
 
-          <p className="mt-4 text-sm text-gray-400">
-            Vamos montar um plano de treino focado exatamente nisso.
-          </p>
+          {loading && (
+            <div className="mt-6 flex items-center gap-2 text-gray-400">
+              <span className="animate-spin h-4 w-4 border-2 border-gray-400 border-t-transparent rounded-full" />
+              Gerando seu plano de treino...
+            </div>
+          )}
         </Step>
       </Stepper>
     </div>

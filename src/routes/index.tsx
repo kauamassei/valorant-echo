@@ -15,7 +15,9 @@ import Maps from "../components/Maps";
 import Privacy from "../components/Privacy";
 import Terms from "../components/Terms";
 import MapInfo from "../components/MapInfo";
-import EchoDashboard from "../components/Training/EchoDashboard";
+
+import TrainingStepper from "../components/Training/TrainingStepper";
+import TrainingPage from "../components/Training/TrainingPage";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -23,24 +25,25 @@ const AppRoutes = () => {
   return (
     <>
       <ToastContainer
-  position="bottom-center"
-  autoClose={3000}
-  hideProgressBar={false}
-  newestOnTop={false}
-  closeOnClick
-  rtl={false}
-  pauseOnFocusLoss
-  draggable
-  pauseOnHover
-  toastClassName="bg-[#0B0F1A] border-l-4 border-[#FF4F4F] text-white font-bold rounded-lg text-center shadow-lg p-4"
-/>
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        toastClassName="bg-[#0B0F1A] border-l-4 border-[#FF4F4F] text-white font-bold rounded-lg text-center shadow-lg p-4"
+      />
 
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/nada" element={<Nothing />} />
 
-          <Route path="/echo" element={<EchoDashboard />} />
+          <Route path="/dashboard/training" element={<TrainingPage />} />
+          <Route path="/dashboard/stepper" element={<TrainingStepper />} />
 
           <Route path="/privacidade" element={<Privacy />} />
           <Route path="/termos" element={<Terms />} />
